@@ -7,7 +7,7 @@ venv and downloads a small model; later runs are instant.
 
     python3 mlx-bootstrap.py "Explain a transformer in one sentence."   # one-shot answer
     python3 mlx-bootstrap.py --serve                                    # OpenAI-compatible server on :8080
-    python3 mlx-bootstrap.py --model mlx-community/Qwen2.5-3B-Instruct-4bit "…"
+    python3 mlx-bootstrap.py --model mlx-community/Qwen2.5-1.5B-Instruct-4bit "…"  # smaller/faster
     python3 mlx-bootstrap.py --bootstrap                                # print this whole story
     python3 mlx-bootstrap.py --doctor                                   # check the machine, install nothing
 
@@ -20,8 +20,9 @@ WHAT IT DOES, step by step (each idempotent, each checked):
   2. Ensure `mlx-lm` is importable. If not, create an isolated venv at ~/.cache/mlx-bootstrap/venv,
      pip-install mlx-lm there, and re-exec itself under that venv's Python. Your system Python stays
      untouched (no --break-system-packages, no global pollution).
-  3. Load a small instruct model (default a ~1GB 4-bit Qwen), downloading it from Hugging Face on
-     first use and caching it forever after.
+  3. Load an instruct model — default `Qwen3-4B-Instruct-2507` 8-bit (~4GB; the same model the
+     author's fleet runs via mlx_lm.server), downloading it from Hugging Face on first use and
+     caching it forever after. Pass `--model` for a smaller/faster one on a low-RAM Mac.
   4. Apply the model's chat template, run generation ON THE GPU, print the answer. Zero tokens billed.
   5. --serve instead starts `mlx_lm.server` — an OpenAI-compatible endpoint (POST /v1/chat/completions)
      so any tool that speaks the OpenAI API can talk to your local model.
@@ -34,7 +35,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-DEFAULT_MODEL = "mlx-community/Qwen2.5-1.5B-Instruct-4bit"   # small, capable, ~1GB 4-bit
+DEFAULT_MODEL = "mlx-community/Qwen3-4B-Instruct-2507-8bit"   # the model the author's fleet runs (~4GB, 8-bit)
 VENV = Path.home() / ".cache" / "mlx-bootstrap" / "venv"
 BOOTSTRAP = __doc__.strip()
 

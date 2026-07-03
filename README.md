@@ -60,9 +60,14 @@ executable.
 
 ## Models
 
-Default: `mlx-community/Qwen2.5-1.5B-Instruct-4bit` (small, capable, ~1 GB). Override with `--model`
-using any [`mlx-community`](https://huggingface.co/mlx-community) repo id, e.g.
-`--model mlx-community/Qwen2.5-3B-Instruct-4bit` or a Llama/Mistral 4-bit MLX conversion.
+Default: **`mlx-community/Qwen3-4B-Instruct-2507-8bit`** — the same model the author's fleet runs on
+its Mac Mini (`mlx_lm.server`), and a genuinely better model than a small 4-bit one: newer (Qwen3,
+the `2507` July-2025 release), larger (4B), and 8-bit for higher fidelity. It's ~4 GB to download the
+first time.
+
+On a low-RAM Mac or when you want speed over quality, override with `--model` using any
+[`mlx-community`](https://huggingface.co/mlx-community) repo id, e.g.
+`--model mlx-community/Qwen2.5-1.5B-Instruct-4bit` (~1 GB) or a Llama/Mistral MLX conversion.
 
 ## License
 
