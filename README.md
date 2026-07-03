@@ -16,6 +16,13 @@ python3 mlx-bootstrap.py --bootstrap                               # print the w
 
 That's the whole thing — **one file, no dependencies to install yourself.** Save it, run it, share it.
 
+## MLX ≠ Apple Foundation Models
+
+This repo runs **downloaded open models** (Qwen, Llama…) on the Apple **GPU** via MLX. If you instead
+want the **built-in Apple Intelligence model** (Apple Foundation Models — no download, macOS 26+,
+Neural Engine, zero tokens), that's a different thing — see the sibling:
+[**esaruoho/apple-fm-bootstrap**](https://github.com/esaruoho/apple-fm-bootstrap).
+
 ## Why
 
 Getting a local model running on a Mac usually means a scavenger hunt: which Python, `pip install`
